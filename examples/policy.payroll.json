@@ -1,0 +1,7 @@
+{
+  "maxPerTxZatoshis": 50000000,
+  "dailyCapZatoshis": 200000000,
+  "recipientAllowlist": [],
+  "cooldownSeconds": 30,
+  "sessionExpiresAt": "2027-10-28T00:00:00.000Z"
+}

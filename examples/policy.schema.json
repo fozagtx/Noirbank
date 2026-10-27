@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://noirbank.local/policy.schema.json",
+  "title": "Noirbank agent mandate",
+  "description": "Software-enforced spend limits for one Noirbank agent account, rechecked before the owner broadcasts a shielded payment. Not a consensus rule or smart-account constraint.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "maxPerTxZatoshis",
+    "dailyCapZatoshis",
+    "recipientAllowlist",
+    "cooldownSeconds",
+    "sessionExpiresAt"
+  ],
+  "properties": {
+    "maxPerTxZatoshis": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Maximum zatoshis allowed in a single spend. 1 ZEC = 100000000 zatoshis. Must be less than or equal to dailyCapZatoshis."
+    },
+    "dailyCapZatoshis": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Maximum zatoshis that approved spends may total in one UTC day."
+    },
+    "recipientAllowlist": {
+      "type": "array",
+      "maxItems": 64,
+      "uniqueItems": true,
+      "description": "Unified addresses selected from the owner's payee book. An empty list rejects every recipient.",
+      "items": {
+        "type": "string",
+        "minLength": 12,
+        "maxLength": 2048,
+        "pattern": "^utest1[a-z0-9]+$"
+      }
+    },
+    "cooldownSeconds": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 2592000,
+      "description": "Minimum seconds between approved spends. Zero disables the cooldown."
+    },
+    "sessionExpiresAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 instant. Spends after this moment are rejected until the owner saves a new policy."
+    }
+  }
+}

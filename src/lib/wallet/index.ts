@@ -1,0 +1,1 @@
+export { DevtoolWallet } from "./devtool";
