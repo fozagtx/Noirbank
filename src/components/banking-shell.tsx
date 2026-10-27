@@ -200,7 +200,7 @@ export function BankingShell({ children }: { children: ReactNode }) {
             <div className="topbar-tools">
               <span className={`network-pill ${state?.wallet.ready ? "network-pill--ready" : ""}`}>
                 <span className="status-dot" />
-                {state?.wallet.opened ? "TESTNET · ZECROCKS" : "VAULT NOT OPEN"}
+                {state?.wallet.opened ? "TESTNET · ZECROCKS" : "BANK NOT OPEN"}
               </span>
               <Link className="help-link" href="/app/settings" aria-label="Settings">
                 <CircleHelp size={18} />
@@ -227,8 +227,7 @@ export function BankingShell({ children }: { children: ReactNode }) {
                 <div className="eyebrow">FIRST, OPEN YOUR BANK</div>
                 <h1>Make Treasury yours.</h1>
                 <p>
-                  Noirbank opens a local age-encrypted wallet on Zcash testnet.
-                  Treasury is your first account; agents never receive its keys.
+                  Open your private bank on Zcash testnet. Your Treasury account is created on this server.
                 </p>
                 <Button
                   className="nb-button nb-button--primary"
@@ -239,7 +238,7 @@ export function BankingShell({ children }: { children: ReactNode }) {
                 </Button>
                 <div className="onboarding-foot">
                   <ShieldCheck size={15} />
-                  <span>The wallet is created only on this self-hosted server.</span>
+                  <span>Your keys never leave this server.</span>
                 </div>
               </section>
             )}

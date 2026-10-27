@@ -1,6 +1,6 @@
-# Noirbank — a private bank for people and their AI agents on Zcash
+# Noirbank — private agentic banking on Zcash
 
-Noirbank is a ZECATHON Shielded Payments track prototype for managing separate Zcash testnet accounts for software agents. Each agent can draft a payment under an owner-defined mandate; only the owner can approve and broadcast it.
+Noirbank is private agentic banking on Zcash, built for the ZECATHON Shielded Payments track. Your AI agents get their own shielded accounts with mandates. They request payments; you approve them.
 
 ## Trust model
 
@@ -34,7 +34,7 @@ pnpm install
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) and choose **Open your bank**. The app creates a testnet Treasury account in `data/vault`, using the `zecrocks` lightwalletd server (`testnet.zec.rocks`). No environment variables are required to use the defaults.
+Open [http://127.0.0.1:43123](http://127.0.0.1:43123) and choose **Open your bank**. The app creates a testnet Treasury account in `data/vault`, using the `zecrocks` lightwalletd server (`testnet.zec.rocks`). No environment variables are required to use the defaults.
 
 ### 3. Fund and use an agent account
 

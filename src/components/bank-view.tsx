@@ -128,7 +128,7 @@ function Overview({ state }: { state: AppState }) {
       <PageIntro
         eyebrow="PRIVATE BANKING / ZCASH TESTNET"
         title="Good to see you."
-        description="Your Treasury, agent accounts and approvals — grounded in testnet wallet data."
+        description="Your Treasury, agent accounts and approvals, live on Zcash testnet."
         action={
           <Button className="nb-button nb-button--outline" disabled={loading} onClick={() => void refresh()}>
             <RefreshCw size={15} /> Refresh from chain
@@ -193,9 +193,9 @@ function Overview({ state }: { state: AppState }) {
         <Surface title="A clear line of control" eyebrow="TRUST MODEL">
           <div className="trust-copy">
             <ShieldCheck size={19} />
-            <p>Mandates are software checks. Agent accounts have separate keys in your server-side age-encrypted vault. Agents can draft payments, but only your approval sends one.</p>
+            <p>Noirbank checks each agent&apos;s mandate before any payment. Each agent account has its own keys, kept encrypted on your server. Agents request payments; only you approve them.</p>
           </div>
-          <Link className="text-link" href="/app/settings">Review vault settings <ArrowRight size={15} /></Link>
+          <Link className="text-link" href="/app/settings">Review bank settings <ArrowRight size={15} /></Link>
         </Surface>
       </div>
     </>
@@ -323,7 +323,7 @@ function Accounts({ state }: { state: AppState }) {
           <div className="eyebrow section-overline">OPEN ACCOUNTS</div>
           <Surface className="account-list-surface">
             {state.agents.length ? state.agents.map((agent) => <AccountLine key={agent.id} agent={agent} />) : (
-              <div className="empty-state"><div className="empty-state-icon"><Wallet size={19} /></div><strong>Your agent accounts will live here</strong><span>Open a template to create a real wallet account and testnet address.</span></div>
+              <div className="empty-state"><div className="empty-state-icon"><Wallet size={19} /></div><strong>Your agent accounts will live here</strong><span>Pick a template to open a shielded agent account.</span></div>
             )}
           </Surface>
           <Surface className="treasury-list-card">
@@ -702,7 +702,7 @@ function Statements({ state }: { state: AppState }) {
 
   return (
     <>
-      <PageIntro eyebrow="CHAIN RECORDS" title="Statements" description="Transactions are read from your wallet database after testnet sync. Viewing keys are revealed only on request." />
+      <PageIntro eyebrow="CHAIN RECORDS" title="Statements" description="Every transaction on your accounts, read from Zcash. Viewing keys are shared only on request." />
       <div className="statement-toolbar">
         <label className="field-label" htmlFor="statement-account">ACCOUNT</label>
         <select id="statement-account" className="text-field statement-select" value={accountId} onChange={(event) => { setAccountId(event.target.value); setRevealed(false); setViewingKey(null); }}>
@@ -718,15 +718,15 @@ function Statements({ state }: { state: AppState }) {
           <div className="viewing-key-value"><code>{viewingKey}</code><CopyButton value={viewingKey} /></div>
         </Surface>
       )}
-      <Surface className="statement-table" eyebrow="WALLET TRANSACTIONS" title={loading ? "Syncing statement…" : "On-chain activity"}>
-        {loading ? <div className="loading-row"><LoaderCircle className="spin" size={17} /> Reading wallet transaction data</div> : data?.transactions.length ? data.transactions.slice().reverse().map((transaction) => (
+      <Surface className="statement-table" eyebrow="ACCOUNT ACTIVITY" title={loading ? "Syncing statement…" : "On-chain activity"}>
+        {loading ? <div className="loading-row"><LoaderCircle className="spin" size={17} /> Reading account activity</div> : data?.transactions.length ? data.transactions.slice().reverse().map((transaction) => (
           <div className="transaction-row" key={transaction.txid}>
             <span className="transaction-glyph"><ArrowUpRight size={17} /></span>
             <span className="transaction-copy"><strong>{transaction.txid}</strong><small>{transaction.minedHeight === null ? "Unmined / pending" : `Mined at height ${transaction.minedHeight.toLocaleString()}`}</small></span>
             <span className="chain-label">TESTNET</span>
           </div>
         )) : <div className="empty-inline">No transactions are recorded for this account yet.</div>}
-        <p className="statement-note">Transaction IDs come from the local zcash-devtool wallet. Amounts and dates are shown when the wallet exposes transaction details.</p>
+        <p className="statement-note">Amounts and dates appear once a transaction is confirmed on Zcash.</p>
       </Surface>
       <Surface className="statement-audit" eyebrow="OWNER RECORD" title="Audit trail">
         <AuditList events={data?.audit.slice().reverse() ?? []} />
@@ -753,9 +753,9 @@ function AuditList({ events }: { events: AppState["audit"] }) {
 function Settings({ state }: { state: AppState }) {
   return (
     <>
-      <PageIntro eyebrow="BANK CONFIGURATION" title="Settings" description="Wallet readiness and public network configuration for this Noirbank instance." />
+      <PageIntro eyebrow="BANK CONFIGURATION" title="Settings" description="Bank status and network configuration for this Noirbank instance." />
       <div className="settings-grid">
-        <Surface eyebrow="WALLET" title="Vault status">
+        <Surface eyebrow="BANK" title="Bank status">
           <SettingRow label="Status" value={state.wallet.opened ? state.wallet.ready ? "Ready · testnet" : "Opened · needs attention" : "Not opened"} />
           <SettingRow label="Wallet backend" value="zcash-devtool" />
           <SettingRow label="Network" value="Zcash testnet" />
@@ -767,11 +767,11 @@ function Settings({ state }: { state: AppState }) {
         <Surface eyebrow="OPTIONAL DRAFTER" title="OpenAI">
           <div className="openai-status"><span className={`status-dot ${state.wallet.openaiConfigured ? "status-dot--green" : ""}`} /><strong>{state.wallet.openaiConfigured ? "Configured" : "Not configured"}</strong></div>
           <p className="settings-copy">Without an API key, Noirbank parses explicit payment instructions and payee names locally. With a key, OpenAI can draft a proposal; policy checks and owner approval still apply.</p>
-          <div className="setting-note"><ShieldCheck size={16} /> No model receives wallet keys or approval authority.</div>
+          <div className="setting-note"><ShieldCheck size={16} /> No model receives keys or approval authority.</div>
         </Surface>
         <Surface eyebrow="SAFETY MODEL" title="What the mandate does">
           <p className="settings-copy">Mandates are application-side checks. The owner re-evaluates the mandate and chain spendable balance before a payment is broadcast. They are not Zcash consensus constraints.</p>
-          <p className="settings-copy">Agent accounts are separate wallet accounts. The age-encrypted wallet data and identity file live on this server under the vault directory.</p>
+          <p className="settings-copy">Each agent account is a separate shielded Zcash account. Keys are kept encrypted on this server.</p>
         </Surface>
       </div>
     </>

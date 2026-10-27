@@ -19,11 +19,10 @@ export default function HomePage() {
           <Link className="landing-nav-cta" href="/app">OPEN YOUR BANK <span>↗</span></Link>
         </header>
         <div className="hero-copy">
-          <p className="hero-eyebrow"><span>■</span> PRIVATE BANKING FOR PEOPLE AND THEIR AGENTS</p>
-          <h1>Your agents spend.<br />Nobody watches.</h1>
+          <p className="hero-eyebrow"><span>■</span> PRIVATE AGENTIC BANKING ON ZCASH</p>
+          <h1>Private banking<br />for your AI agents.</h1>
           <p className="hero-subtitle">
-            Give every agent its own shielded Zcash account and a mandate.
-            Keep the keys, the approvals and the final say.
+            Open accounts for your agents on Zcash. Set their mandates, approve what they pay, and keep every balance shielded.
           </p>
           <div className="hero-actions">
             <Link className="hero-button hero-button--light" href="/app">OPEN YOUR BANK <span>↗</span></Link>
@@ -31,18 +30,17 @@ export default function HomePage() {
           </div>
         </div>
         <div className="hero-bottomline">
-          <span>PRIVATE BY DESIGN. OWNER BY DEFAULT.</span>
-          <span>BUILT ON ZCASH TESTNET <i>↘</i></span>
+          <span>SHIELDED BY ZCASH. APPROVED BY YOU.</span>
+          <span>LIVE ON ZCASH TESTNET <i>↘</i></span>
         </div>
       </section>
 
       <section className="landing-story" id="how-it-works">
         <div className="story-intro">
-          <p className="eyebrow">A NEW KIND OF PRIVATE BANK</p>
-          <h2>Give your agents a seat.<br /><em>Not the keys.</em></h2>
+          <p className="eyebrow">AGENTIC BANKING, PRIVATE BY DEFAULT</p>
+          <h2>Your agents bank here.<br /><em>You stay in charge.</em></h2>
           <p className="story-lead">
-            Noirbank gives every agent a separate shielded account with software-enforced limits.
-            An agent can prepare a payment. You decide whether it leaves.
+            Every agent gets its own shielded account with a mandate. Agents request payments. You approve them.
           </p>
         </div>
 
@@ -63,7 +61,7 @@ export default function HomePage() {
               <div className="frame-overview-eyebrow">PRIVATE BANKING / TESTNET</div>
               <div className="frame-content-head">
                 <div><h3>Treasury</h3><p>Chain balance appears after opening your bank.</p></div>
-                <span className="frame-sync">LIVE WALLET DATA</span>
+                <span className="frame-sync">LIVE ON TESTNET</span>
               </div>
               <div className="frame-divider" />
               <div className="frame-lower">
@@ -81,7 +79,7 @@ export default function HomePage() {
           <div className="feature-index">01 / ACCOUNTS & MANDATES</div>
           <div className="feature-rule" />
           <h3>One account per agent.</h3>
-          <p>Payroll clerk, tips bot, API spender — each gets a real testnet wallet account and a mandate you control.</p>
+          <p>Payroll clerk, tips bot, API spender — each gets its own shielded Zcash account and a mandate you set.</p>
           <span className="feature-icon">↗</span>
         </article>
         <article className="feature-card" id="approvals">
@@ -95,14 +93,14 @@ export default function HomePage() {
           <div className="feature-index">03 / STATEMENTS</div>
           <div className="feature-rule" />
           <h3>Private by default.<br />Auditable on request.</h3>
-          <p>Wallet-backed transaction history, a local audit trail and viewing keys revealed only when you choose.</p>
+          <p>Statements read from the chain, a full audit trail, and viewing keys you share only when you choose.</p>
           <span className="feature-icon">◉</span>
         </article>
       </section>
 
       <section className="trust-strip" id="trust">
         <div className="trust-strip-label"><span>■</span> A STRAIGHTFORWARD TRUST MODEL</div>
-        <p><strong>Agents never hold keys.</strong> The wallet and age identity stay on your self-hosted server. Mandates are software checks, not consensus rules. Every payment needs your approval.</p>
+        <p><strong>Agents never hold keys.</strong> Your bank runs on your own server. Noirbank checks every mandate before a payment, and every payment needs your approval.</p>
         <Link href="/app/settings">READ THE TRUST MODEL <span>↗</span></Link>
       </section>
 

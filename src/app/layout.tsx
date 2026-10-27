@@ -20,11 +20,11 @@ const display = Newsreader({
 
 export const metadata: Metadata = {
   title: {
-    default: "Noirbank — private agentic banking on Zcash",
+    default: "Noirbank — Private agentic banking on Zcash",
     template: "%s · Noirbank",
   },
   description:
-    "Private banking for people and their AI agents on Zcash. Separate shielded testnet accounts, software mandates and owner-approved payments.",
+    "Private agentic banking on Zcash: shielded accounts, mandates and owner approvals for your AI agents.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
